@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR-360</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-assets>
+            <img id="beam" src="./image/beam.jpg">
+        </a-assets>
+        <a-sky src="./image/bg.jpg" position="200 2 -50"></a-sky>
+        <a-text value="Mobile Web Application Development" position="-5 1 -2"
+            animation="property: position; to: -1.8 1 -2.2; dur: 5000; easing: linear; loop: false"></a-text>
+        <a-box position="0 0 0" width="1.5" height="1.5"
+            animation__position="property: position; to: 0 1.5 -5; dur: 4500; easing: linear"
+            animation__rotation="property: rotation; to: 0 360 0; dur: 5000; loop: true;" src="#beam"></a-box>
+
+        <a-box position="-10 0.75 -10" color="#FFe5ec" width="1" height="1"
+            animation="property: position; to: 2 3 1; dur: 5000; easing: linear; loop: true;"
+            animation__2="property: rotation; to: 0 100 100; dur: 250; loop: true;"></a-box>
+
+        <a-box position="0 0 -5" color="#fbd741" width="0.1" height="0.1"
+            animation="property: position; to: 2 3 1; dur: 2000; easing: linear; loop: true;"
+            animation__2="property: rotation; to: 0 1 1; dur: 150; loop: true;"></a-box>
+
+            <a-box position="0 2 -5" color="#fbd741" width="0.1" height="0"
+            animation="property: position; to: 2 3 1; dur: 1500; easing: linear; loop: true;"
+            animation__2="property: rotation; to: 0 1 1; dur: 150; loop: true;"></a-box>
+
+            <a-box position="0 4 -5" color="#fbd741" width="0.1" height="0"
+            animation="property: position; to: 2 3 1; dur: 1000; easing: linear; loop: true;"
+            animation__2="property: rotation; to: 0 1 1; dur: 150; loop: true;"></a-box>
+    </a-scene>
+</body>
+
+</html>
