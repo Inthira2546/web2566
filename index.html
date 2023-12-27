@@ -70,13 +70,9 @@
             border-right: 20px solid rgb(23, 23, 23);
             transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
         }
-
-        /*Ocultar scroll para chrome, safari y opera*/
         .menu__side::-webkit-scrollbar {
             display: none;
         }
-
-        /*Ocultar scroll para IE, Edge y Firefox*/
         .menu__side {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -157,6 +153,18 @@
             padding-top: 50px;
             margin-left: 50px;
         }
+        .profile{
+            width: 250px;
+            height: 580px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0.5px 0.5px 15px rgb(164, 164, 164);
+            margin: 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+        .com{
+            display: flex;
+        }
 
         @media screen and (max-width: 760px) {
             .body_move {
@@ -194,11 +202,17 @@
                     <h4>Home</h4>
                 </div>
             </a>
-            
-            <a href="work1.html">
+       
+            <a href="work.html">
                 <div class="option">
                     <i class="far fa-file" title="งานที่1"></i>
-                    <h4>งานที่1</h4>
+                    <h4>งานที่ 1</h4>
+                </div>
+            </a>
+            <a href="../work2/work.html">
+                <div class="option">
+                    <i class="far fa-file" title="งานที่2"></i>
+                    <h4>งานที่ 2</h4>
                 </div>
             </a>
 
@@ -218,13 +232,17 @@
             </a>
 
         </div>
-
     </div>
-    <div class="container">
-        <p>จัดทำโดย</p><br>
-        <p>นางสาวอินทิรา ฤทธิพรม รหัสนักศึกษา 653380013-3</p><br>
-        <p>สาขาวิชา เทคโนโลยีสารสนเทศ </p><br>
-        <p>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</p>
+    <div class="com">
+        <!-- <div class="profile">
+            dhyg
+        </div> -->
+        <div class="container">
+            <p>จัดทำโดย</p><br>
+            <p>นางสาวอินทิรา ฤทธิพรม รหัสนักศึกษา 653380013-3</p><br>
+            <p>สาขาวิชา เทคโนโลยีสารสนเทศ </p><br>
+            <p>วิทยาลัยการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</p>
+        </div>
     </div>
     <script>
         document.getElementById("btn_open").addEventListener("click", open_close_menu);
