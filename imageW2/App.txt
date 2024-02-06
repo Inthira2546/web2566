@@ -1,0 +1,60 @@
+import React, { useEffect, useState } from 'react';
+import { Text, View, SafeAreaView, StyleSheet } from 'react-native';
+import { Card } from 'react-native-paper';
+import Constants  from 'expo-constants';
+
+import FaceView from './components/FaceView';
+import * as Font from 'expo-font';
+
+async function loadFonts(setState) {
+  await Font.loadAsync({
+    Itim: require('./assets/Mali-Regular.ttf'),
+  });
+  setState(true);
+}
+
+export default function App() {
+  const [fontLoaded, setFontLoaded] = useState(false);
+
+  useEffect(() => {
+    loadFonts(setFontLoaded);
+  }, []);
+
+  if (!fontLoaded) {
+    loadFonts(setFontLoaded);
+    return (
+      <View style={{ padding: 50 }}>
+        <Text>Loading</Text>
+      </View>
+    );
+  }
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.paragraph}>Work 5: Application By Inthi</Text>
+      <Card>
+        <FaceView />
+      </Card>
+      <Text style={styles.paragraph}>นางสาวอินทิรา ฤทธิพรม 653380013-3</Text>
+    </SafeAreaView>
+  );
+}
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    fontFamily: 'Mali',
+    textAlign: 'center',
+  },
+});

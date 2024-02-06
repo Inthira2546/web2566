@@ -1,0 +1,79 @@
+import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet, Image } from 'react-native';
+import { Camera } from 'expo-camera';
+import * as FaceDetector from 'expo-face-detector';
+
+async function askForCamera(setState) {
+  const { status } = await Camera.requestCameraPermissionsAsync();
+  setState(status === 'granted');
+}
+
+export default function FaceView() {
+  const [hasCamera, setHasCamera] = useState(false);
+  const [type, setType] = useState(Camera.Constants.Type.front);
+  const [faces, setFaces] = useState(null);
+
+  useEffect(() => {
+    askForCamera(setHasCamera);
+  }, []);
+
+  if (!hasCamera) {
+    return <View style={styles.container}><Text>ไม่มีกล้อง</Text></View>;
+  }
+
+  const renderFaceImage = (position) => (
+    <Image
+      key={1}
+      source={require("../assets/rainbow.png")}
+      style={{ position: "absolute", width: 250, height: 250, left: position.x, top: position.y }}
+    />
+  );
+   const renderFaceImaged = (position) => (
+    <Image
+      key={1}
+      source={require("../assets/ss.png")}
+      style={{ position: "absolute", width: 150, height: 60, left: position.x, top: position.y }}
+    />
+  );
+
+
+  let faceText = "";
+  let faceImages = [];
+
+  if (faces && faces.faces.length > 0) {
+    const f = faces.faces[0];
+    faceText = JSON.stringify(f);
+
+    const pos = f.leftEyePosition || { x: 140, y: 220 };
+    faceImages.push(renderFaceImaged(pos));
+
+    const posa = f.leftEyePosition || { x: 90, y: 50 };
+    faceImages.push(renderFaceImage(posa));
+  }
+
+  return (
+    <View style={styles.container}>
+      <Camera
+        type={type}
+        style={{ height: '100%', width: '100%' }}
+        onFacesDetected={setFaces}
+        faceDetectorSettings={{
+          mode: FaceDetector.FaceDetectorMode.fast,
+          detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
+          runClassifications: FaceDetector.FaceDetectorClassifications.all,
+          minDetectionInterval: 100,
+          tracking: true,
+        }}
+      />
+      {faceImages}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    padding: 5,
+    height: 400,
+  },
+});
